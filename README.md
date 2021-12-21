@@ -8,7 +8,12 @@ This project is on early stages of development.
 ## Running A-R :
 It is recommended to run it on a kali-linux machine , cause there are some tools that are automated in these scripts which are pre-installed on kali.
 Or if you want to run it on other OS's make sure you install all requirements first.
-**Command to run A-R:** `sudo sh A-R.sh <Target domain>`
+**Command to run A-R:** 
+as you know first git clone it 
+`git clone https://github.com/bijan53c/A-R
+cd A-R`
+then
+`sudo sh A-R.sh <Target domain>`
 
 ## Dependencies :
 - python3 
