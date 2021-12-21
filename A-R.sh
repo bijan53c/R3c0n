@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]
 then
-        echo "Usage: ./auto-rec.sh <Target URL>"
+        echo "Usage: sudo sh A-R.sh <Target URL>"
         exit 1
 fi
 
@@ -24,7 +24,7 @@ ColorBlue(){
  echo $blue$1$clear
 }
 ##
-echo $(ColorBlue '< --- Auto-Rec-v0.1 --- >\n')
+echo $(ColorBlue '< --- A-R-v.12.21.2021 --- >\n')
 echo "$1" > targeturl.txt
 echo "$1" > scanners/targeturl.txt
 
