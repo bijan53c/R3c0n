@@ -28,16 +28,16 @@ echo $(ColorBlue '< --- R3c0n_v.12.23.2021 --- >\n')
 echo "$1" > targeturl.txt
 echo "$1" > scanners/targeturl.txt
 
-echo $(ColorGreen 'running whatweb...\n')
+echo $(ColorGreen '\n running whatweb...\n')
 echo "------ WhatWeb ------\n" > OutputFiles/$1'.md'
 whatweb $1 >> OutputFiles/$1'.md'
 
 
-echo $(ColorGreen 'running wafw00f...\n')
+echo $(ColorGreen '\n running wafw00f...\n')
 echo "\n------ WafW00f ------\n" >> OutputFiles/$1'.md'
 wafw00f -a $1 >> OutputFiles/$1'.md'
 
-echo $(ColorGreen 'running assetfinder...\n')
+echo $(ColorGreen '\n running assetfinder...\n')
 echo "------ Assets (using assetfinder) ------\n" >> OutputFiles/$1'.md'
 assetfinder $1 >> OutputFiles/$1'.md'
 
@@ -45,13 +45,13 @@ assetfinder $1 >> OutputFiles/$1'.md'
 #echo "\n------ Nikto ------\n" >> OutputFiles/$1'.md'
 #nikto -host $1 -timeout 5 >> OutputFiles/$1'.md'
 
-echo $(ColorGreen 'running GoBuster...\n')
+echo $(ColorGreen '\n running GoBuster...\n')
 echo "\n------ GoBuster ------\n" >> OutputFiles/$1'.md'
 gobuster dir --url $1 -w Wordlists/SECLISTcommon.txt >> OutputFiles/$1'.md'
 
 
 
-echo $(ColorBlue 'running python scripts("Scanners!!")...\n')
+echo $(ColorBlue '\n running python scripts("Scanners!!")...\n')
 echo "\n <========== PY-Scripts ==========>\n" >> OutputFiles/$1'.md'
 
 echo $(ColorGreen 'Dorking using bing search engine...\n')
