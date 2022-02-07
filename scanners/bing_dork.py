@@ -15,7 +15,8 @@ def bing (sit,page):
 targetfile = open("targeturl.txt","r")
 url = targetfile.read()
 cleanURL = url.strip()
-site = cleanURL #input("\n Target Domain:  ")
+siteC = cleanURL #input("\n Target Domain:  ")
+site = "."+siteC
 page = "3"
 print (site)
 
