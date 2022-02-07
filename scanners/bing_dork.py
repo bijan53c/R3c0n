@@ -19,7 +19,7 @@ cleanURL = url.strip()
 siteC = cleanURL #input("\n Target Domain:  ")
 site = "."+siteC
 page = "3"
-print ("bing_dork.py - V_07.02.2022
+print ("bing_dork.py - V_07.02.2022")
 print (site)
 
 print ()
