@@ -40,5 +40,7 @@ There are some scripts which need some keys and codes which you need to customiz
 ## Features to add (To-do):
 - [ ] Adding vulnerability scanners
 - [x] Making wappy.py ready and automated
-- [ ] Clean output file format
+- [ ] Clean output file format (probably clean .md file)
 - [ ] list input for giving list of target domains to R3c0n
+- [ ] extract target IP and add nmap
+- [ ] Adding shodan Api feature to use shodan on target IP
