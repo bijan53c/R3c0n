@@ -5,7 +5,7 @@
 
 
 ## 12.23.2021
-- updating on 12.33.2021
+- updating on 12.23.2021
 - asset finder 
 - wappy fix
 - version has been tested
