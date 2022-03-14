@@ -3,6 +3,10 @@
 simple toolset for automating recon and scanning tasks.
 This project is on early stages of development.
 
+**V-03.14.2022 changelog:**
+- removed useless .py scripts 
+- nikto tool is used again 
+- updated dependencies
 -------------------------------------------------------------
 
 ## Running R3c0n :
