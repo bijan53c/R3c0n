@@ -1,5 +1,5 @@
 # R3c0n
-### V-12.23.2021
+### V-03.14.2022
 simple toolset for automating recon and scanning tasks.
 This project is on early stages of development.
 
@@ -19,11 +19,13 @@ then
 - python3 
 - python requests library
 -  ' '   urllib   '  '
+-  ' '   bs4      '  '
 - ***Tools automated in this program:***
   - Gobuster
   - Whatweb
   - WafW00f
   - assetfinder 
+  - nikto
 
 
 ## Making most use of R3c0n:
@@ -34,7 +36,6 @@ There are some scripts which need some keys and codes which you need to customiz
 ## Built in tools and scripts
 - bing_dork.py > uses bing search engine to dork for related urls and subdomains
 - wappy.py     > uses wapplyzer api to find technologies used in target website
-- there are some other scripts in `scanners` directory which are not automated yet.
 
 
 ## Features to add (To-do):
