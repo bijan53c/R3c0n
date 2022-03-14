@@ -7,6 +7,7 @@ This project is on early stages of development.
 - removed useless .py scripts 
 - nikto tool is used again 
 - updated dependencies
+- Now R3c0n runs gobuster using `gobuster -u <target> -w Wordlists/SECLISTcommon.txt -fw` command.
 -------------------------------------------------------------
 
 ## Running R3c0n :
