@@ -41,9 +41,9 @@ echo $(ColorGreen '\n running assetfinder...\n')
 echo "------ Assets (using assetfinder) ------\n" >> OutputFiles/$1'.md'
 assetfinder $1 >> OutputFiles/$1'.md'
 
-#echo $(ColorGreen 'running nikto...\n')
-#echo "\n------ Nikto ------\n" >> OutputFiles/$1'.md'
-#nikto -host $1 -timeout 5 >> OutputFiles/$1'.md'
+echo $(ColorGreen 'running nikto...\n')
+echo "\n------ Nikto ------\n" >> OutputFiles/$1'.md'
+nikto -h $1 >> OutputFiles/$1'.md'
 
 echo $(ColorGreen '\n running GoBuster...\n')
 echo "\n------ GoBuster ------\n" >> OutputFiles/$1'.md'
@@ -63,12 +63,6 @@ echo $(ColorGreen 'Running wappy.py (wapplyzer api) ...\n')
 echo "\n------ wappy.py _(wapplyzer API)_  ------\n" >> OutputFiles/$1'.md'
 python3 ./scanners/wappy.py
 cat wappyresult.txt >> OutputFiles/$1'.md'
-
-
-#echo $(ColorGreen '\n trying XSS on the target URL ...\n')
-#echo $(ColorGreen '\n automated XSS is not running on discoverd directories yet!\n It will happen in updates.')
-#echo "\n------ XSS ------\n" >> OutputFiles/$1'.md'
-#python3 ./scanners/xss.py >> OutputFiles/$1'.md'
 
 
 echo '\n##### All Done #####\n'
