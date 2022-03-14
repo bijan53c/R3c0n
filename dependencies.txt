@@ -2,6 +2,7 @@ whatweb
 wafw00f
 gobuster
 assetfinder
+nikto
 python3
 pip urllib
  sudo apt-get install python3-pip
