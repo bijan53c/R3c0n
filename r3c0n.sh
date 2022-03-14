@@ -47,7 +47,7 @@ nikto -h $1 >> OutputFiles/$1'.md'
 
 echo $(ColorGreen '\n running GoBuster...\n')
 echo "\n------ GoBuster ------\n" >> OutputFiles/$1'.md'
-gobuster dir --url $1 -w Wordlists/SECLISTcommon.txt >> OutputFiles/$1'.md'
+gobuster -u $1 -w Wordlists/SECLISTcommon.txt -fw >> OutputFiles/$1'.md'
 
 
 
