@@ -1,7 +1,10 @@
 # R3c0n
-### V-03.14.2022
+### V-03.20.2022
 simple toolset for automating recon and scanning tasks.
 This project is on early stages of development.
+
+**03.20.2022 changelog:**
+- added nmap scanning target domain with this command `nmap -A <target-domain>`
 
 **V-03.14.2022 changelog:**
 - removed useless .py scripts 
@@ -31,6 +34,7 @@ then
   - WafW00f
   - assetfinder 
   - nikto
+  - nmap
 
 
 ## Making most use of R3c0n:
@@ -48,5 +52,6 @@ There are some scripts which need some keys and codes which you need to customiz
 - [x] Making wappy.py ready and automated
 - [ ] Clean output file format (probably clean .md file)
 - [ ] list input for giving list of target domains to R3c0n
-- [ ] extract target IP and add nmap
+- [ ] extract target IP 
+- [x] add nmap
 - [ ] Adding shodan Api feature to use shodan on target IP
