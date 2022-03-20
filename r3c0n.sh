@@ -39,7 +39,7 @@ wafw00f -a $1 >> OutputFiles/$1'.md'
 
 echo $(ColorGreen '\n running NMAP -A ... \n')
 echo "\n ------ NMAP ------ \n" >> OutputFiles/$1'.md'
-nmap -a $1 >> OutputFiles/$1'.md'
+nmap -A $1 >> OutputFiles/$1'.md'
 
 echo $(ColorGreen '\n running assetfinder...\n')
 echo "------ Assets (using assetfinder) ------\n" >> OutputFiles/$1'.md'
