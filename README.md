@@ -49,6 +49,7 @@ There are some scripts which need some keys and codes which you need to customiz
 
 
 ## Features to add (To-do):
+- [ ] Add Sublist3r
 - [ ] Adding vulnerability scanners
 - [x] Making wappy.py ready and automated
 - [ ] Clean output file format (probably clean .md file)
