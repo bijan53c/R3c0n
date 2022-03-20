@@ -24,7 +24,7 @@ ColorBlue(){
  echo $blue$1$clear
 }
 ##
-echo $(ColorBlue '< --- R3c0n_v.12.23.2021 --- >\n')
+echo $(ColorBlue '< --- R3c0n_v.03.20.2022 --- >\n')
 echo "$1" > targeturl.txt
 echo "$1" > scanners/targeturl.txt
 
@@ -36,6 +36,10 @@ whatweb $1 >> OutputFiles/$1'.md'
 echo $(ColorGreen '\n running wafw00f...\n')
 echo "\n------ WafW00f ------\n" >> OutputFiles/$1'.md'
 wafw00f -a $1 >> OutputFiles/$1'.md'
+
+echo $(ColorGreen '\n running NMAP -A ... \n')
+echo "\n ------ NMAP ------ \n" >> OutputFiles/$1'.md'
+nmap -a $1 >> OutputFiles/$1'.md'
 
 echo $(ColorGreen '\n running assetfinder...\n')
 echo "------ Assets (using assetfinder) ------\n" >> OutputFiles/$1'.md'
