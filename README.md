@@ -22,6 +22,7 @@ as you know first git clone it
 cd R3c0n`
 then
 `sudo sh r3c0n.sh <Target domain>`
+*`sudo` is recommended , cause some tools like nmap require that privilege for best result*
 
 ## Dependencies :
 - python3 
