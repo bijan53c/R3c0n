@@ -1,59 +1,79 @@
-# R3c0n
-### V-03.20.2022
-simple toolset for automating recon and scanning tasks.
-This project is on early stages of development.
+# fingerprint.py — Passive Web Fingerprinting (Bug Bounty Recon, First Step)
 
-**03.20.2022 changelog:**
-- added nmap scanning target domain with this command `nmap -A <target-domain>`
+Passive web fingerprinting tool for a bug bounty hunter. Run it on a target as the
+first step of recon: it reports the web stack, proxies, security posture, discovery
+exposure and (optionally) HTTP method behavior. By default all checks are passive
+(plain GETs) — nothing is sent to change the target.
 
-**V-03.14.2022 changelog:**
-- removed useless .py scripts 
-- nikto tool is used again 
-- updated dependencies
-- Now R3c0n runs gobuster using `gobuster -u <target> -w Wordlists/SECLISTcommon.txt -fw` command.
--------------------------------------------------------------
+## Usage
 
-## Running R3c0n :
-It is recommended to run it on a kali-linux machine , cause there are some tools that are automated in these scripts which are pre-installed on kali.
-Or if you want to run it on other OS's make sure you install all requirements first.
-**Command to run R3c0n:** 
-as you know first git clone it 
-`git clone https://github.com/bijan53c/R3c0n
-cd R3c0n`
-then
-`sudo sh r3c0n.sh <Target domain>`
-*`sudo` is recommended , cause some tools like nmap require that privilege for best result*
+```bash
+python fingerprint.py https://example.com              # text output
+python fingerprint.py https://example.com --json       # JSON output
+python fingerprint.py https://example.com --output fp.json
+python fingerprint.py https://example.com --quiet --output fp.json
+python fingerprint.py https://example.com --active     # adds HEAD/OPTIONS/PUT/DELETE probes
+python fingerprint.py https://example.com --timeout 15
+```
 
-## Dependencies :
-- python3 
-- python requests library
--  ' '   urllib   '  '
--  ' '   bs4      '  '
-- ***Tools automated in this program:***
-  - Gobuster
-  - Whatweb
-  - WafW00f
-  - assetfinder 
-  - nikto
-  - nmap
+## What it checks
 
+**Default (passive)**
 
-## Making most use of R3c0n:
-There are some scripts which need some keys and codes which you need to customize them.
-- ***Telegram notification:*** You need to enter your telegram bot token and chat id in `telegramSimpleAPI.py` script to receive notifications via telegram , everytime a scan is done. This script will be updated for more features.
-- ***Checking what websites are built with:*** For thise section we use *wapplyzer* api. So you should use your own api key to use this feature. You can edit `wappy.py` to enter your own API key.
+- Response headers of the main page and of a random 404 path
+- Sitemap status: `/sitemap.xml`, `/sitemap_index.xml`, `/sitemap-index.xml`
+- Favicon MD5 hash
+- Source inspection of the main page:
+  - meta generator, `/wp-content/plugins/<name>/`, `/wp-content/themes/<name>/`
+  - CDN library versions from `name@version` tokens (e.g. `bootstrap@5.3.2`)
+  - Generic framework signatures (Django, Rails, Laravel, Vue, React, …)
+- WAF / reverse-proxy fingerprinting from headers/cookies (Cloudflare, Sucuri,
+  Cloudbric, Incapsula, ModSecurity, Akamai, Distil, AWS WAF, Azure Front Door…)
+- Reverse proxy / CDN fingerprinting (Cloudflare, CloudFront, Fastly, Google
+  Frontend, Vercel, Netlify, Heroku, GitHub Pages…)
+- Security-headers audit: present (with values) + absent lists
+  (HSTS, CSP, X-Frame-Options, Expect-CT, …)
+- Error-page signatures: GET `/500`, `/error`, `/404` — bodies matched against
+  PHP/Python/Django/ASP.NET/Rails/Laravel/Java/Apache/IIS/generic stack traces
+- Passive discovery endpoints (notable statuses only): `/.git/HEAD`, `/.git/config`,
+  `/.git/packed-refs`, `/config.php`, `/configuration.php`, `/wp-config.php`,
+  `/application.ini`, `/.env`, `/.htaccess`, `/server-status`, `/status`, `/health`
+- Host hints: `*.github.io` → "GitHub Pages"
 
-## Built in tools and scripts
-- bing_dork.py > uses bing search engine to dork for related urls and subdomains
-- wappy.py     > uses wapplyzer api to find technologies used in target website
+**With `--active`**
 
+- `HEAD`, `OPTIONS` on the target root
+- `PUT`, `DELETE` on the target root
 
-## Features to add (To-do):
-- [ ] Add Sublist3r
-- [ ] Adding vulnerability scanners
-- [x] Making wappy.py ready and automated
-- [ ] Clean output file format (probably clean .md file)
-- [ ] list input for giving list of target domains to R3c0n
-- [ ] extract target IP 
-- [x] add nmap
-- [ ] Adding shodan Api feature to use shodan on target IP
+## Output (text)
+
+```
+=== Fingerprint: https://example.com ===
+[main] GET https://example.com/ -> 200
+         server: nginx
+         tech: Bootstrap
+         sec-headers (ABSENT): Content-Security-Policy, ...
+[404]  GET https://example.com/fp-xk3j9z2qwak -> 404
+         server: nginx
+[sitemap] /sitemap-index.xml=200, /sitemap.xml=200, /sitemap_index.xml=200
+[favicon] md5=1b04361150c55167a11994310a1c612a
+[discovery] /.git/HEAD=200, /config.php=200, ...
+[active] DELETE=200, HEAD=200, OPTIONS=200, PUT=200
+```
+
+## Output (JSON)
+
+Top-level keys:
+
+- `target`, `main` (`url`, `status`, `headers`, `meta_generator`, `wp_assets`,
+  `library_versions`, `body_signatures`, `waf`, `proxy`, `security_headers`),
+  `notfound`, `sitemap`, `favicon_md5`, `waf`, `proxy`, `security_headers`,
+  `error_pages` (`[{path, status, signatures}]`), `discovery` (`[{path, status}]`),
+  `host_hints`, `active_probes` (only with `--active`)
+
+## Notes for hunters
+
+- Start with the tool output: anything it flags (stack traces, `.env`, git metadata,
+  absent security headers) is a candidate for further checks.
+- `security_headers.absent` often hints at the stack vintage (e.g., no HSTS on a modern stack).
+- Random 404 token (`fp-xxxx`) lets you spot a WAF: main 200 but random 404 blocked.
